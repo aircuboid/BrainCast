@@ -1,0 +1,15 @@
+{
+  "name": "braincast-web-interface",
+  "version": "0.1.0",
+  "description": "Web interface for BrainCast YouTube prediction system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.3.4",
+    "dotenv": "^16.0.3"
+  }
+}

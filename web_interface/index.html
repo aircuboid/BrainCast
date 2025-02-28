@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainCast - Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BrainCast</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Discover</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for podcasts, episodes, topics...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filters">
+                    <select name="category">
+                        <option value="">All Categories</option>
+                        <option value="technology">Technology</option>
+                        <option value="science">Science</option>
+                        <option value="business">Business</option>
+                        <option value="health">Health</option>
+                    </select>
+                    <select name="duration">
+                        <option value="">Any Duration</option>
+                        <option value="short">Short (<30 min)</option>
+                        <option value="medium">Medium (30-60 min)</option>
+                        <option value="long">Long (>60 min)</option>
+                    </select>
+                    <select name="date">
+                        <option value="">Any Date</option>
+                        <option value="week">Past Week</option>
+                        <option value="month">Past Month</option>
+                        <option value="year">Past Year</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section">
+        <div class="container">
+            <h2>Search Results</h2>
+            <div class="results-count">
+                <p>Showing 6 results</p>
+                <div class="sort-by">
+                    <label for="sort">Sort by:</label>
+                    <select id="sort">
+                        <option value="relevance">Relevance</option>
+                        <option value="date">Date</option>
+                        <option value="popularity">Popularity</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="results-container" id="results-list">
+                <!-- Results will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 BrainCast. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

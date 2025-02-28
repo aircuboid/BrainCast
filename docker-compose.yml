@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  prediction-engine:
+    build:
+      context: ./prediction_engine
+    volumes:
+      - ./prediction_engine:/app
+    environment:
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/braincast
+    depends_on:
+      - db
+    networks:
+      - braincast-network
+
+  web-interface:
+    build:
+      context: ./web_interface
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web_interface:/app
+      - /app/node_modules
+    environment:
+      - API_URL=http://prediction-engine:5000
+    depends_on:
+      - prediction-engine
+    networks:
+      - braincast-network
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=braincast
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - braincast-network
+    
+  streaming-service:
+    build:
+      context: ./streaming_service
+    volumes:
+      - ./streaming_service:/app
+    environment:
+      - WEB_INTERFACE_URL=http://web-interface:3000
+      - YOUTUBE_STREAM_KEY=${YOUTUBE_STREAM_KEY}
+    depends_on:
+      - web-interface
+    networks:
+      - braincast-network
+
+volumes:
+  postgres_data:
+
+networks:
+  braincast-network:
