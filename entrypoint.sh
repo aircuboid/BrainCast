@@ -43,7 +43,7 @@ initialize() {
   mkdir -p ./logs
   
   # Set permissions
-  chmod -R 777 ./data ./logs
+  chmod -R 755 ./data ./logs
   
   log "${GREEN}Initialization complete!${NC}"
 }
